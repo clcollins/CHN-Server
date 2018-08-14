@@ -6,8 +6,10 @@ import sys
 
 if __name__ == '__main__':
 
+    uwsgi_port = 8080
+
     uwsgi_init = ['uwsgi',
-                  '--http 8080',
+                  ('--http %d' % uwsgi_port),
                   '--module mhn:mhn',
                   '--buffer-size 04096']
 
@@ -18,5 +20,7 @@ if __name__ == '__main__':
         else:
             print("Initializing new database")
             create_clean_db()
-
+            
+    print("Starting uwsgi...")
+    print("Listening :%d" % uwsgi_port)
     os.execv('uwsgi', uwsgi_init)
