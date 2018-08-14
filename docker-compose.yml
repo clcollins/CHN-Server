@@ -1,22 +1,11 @@
-version: '2'
+version: '3'
 services:
-  centos:
+  chnserver:
     build:
       context: .
-      dockerfile: Dockerfile-centos
-    image: chnserver:centos
+      dockerfile: Dockerfile
+    image: chnserver:kubernetes
     ports:
-      - "127.0.0.1:80:80"
-      - "127.0.0.1:443:443"
-    env_file:
-      - .development.env
-  ubuntu:
-    build:
-      context: .
-      dockerfile: Dockerfile-ubuntu
-    image: chnserver:ubuntu
-    ports:
-      - "127.0.0.1:80:80"
-      - "127.0.0.1:443:443"
+      - "127.0.0.1:8080:8080"
     env_file:
       - .development.env
